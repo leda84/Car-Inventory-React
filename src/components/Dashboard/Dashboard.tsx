@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Drawer as MUIDrawer,
     ListItem,
     List,
@@ -92,10 +92,24 @@ interface DashProps{
     match: RouteComponentProps['match']
 }
 
-export const Dashboard = () => {
+export const Dashboard = withRouter(( props:DashProps ) => {
+    console.log(props)
+    const { history } = props;
+    const classes = useStyles();
+    const theme = useTheme();
+    const [ open, setOpen] = useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    }
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    }
+
     return(
         <div>
             <h1>Dashboard</h1>
         </div>
     )
-}
+})
