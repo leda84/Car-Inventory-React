@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
-
+import { server_calls } from '../../api';
+import { useGetData } from '../../custom-hooks';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 140 },
@@ -42,26 +43,16 @@ const columns: GridColDef[] = [
 //     }
 //   }
 
-const rows = [
-    { id: 1, name: 'Snow', make: 'Jon', price: 35 },
-    { id: 2, name: 'Lannister', make: 'Cersei', price: 42 },
-    { id: 3, name: 'Lannister', make: 'Jaime', price: 45 },
-    { id: 4, name: 'Stark', make: 'Arya', price: 16 },
-    { id: 5, name: 'Targaryen', make: 'Daenerys', price: null },
-    { id: 6, name: 'Melisandre', make: null, price: 150 },
-    { id: 7, name: 'Clifford', make: 'Ferrara', price: 44 },
-    { id: 8, name: 'Frances', make: 'Rossini', price: 36 },
-    { id: 9, name: 'Roxie', make: 'Harvey', price: 65 },
-  ];
-
 export const DataTable = () => {
-    return (
-        <div style={{ height: 400, width: '100%'}}>
-            <h2>Cars in Inventory</h2>
-            <DataGrid rows={rows} 
-                      columns={columns} 
-                      pageSize={5} 
-                      checkboxSelection/>
-        </div>
-    )
+  let { carData, getData } = useGetData();
+  return (
+    <div style={{ height: 400, width: '100%'}}>
+        <h2>Cars in Inventory</h2>
+        <DataGrid rows={carData} 
+                  columns={columns} 
+                  pageSize={5} 
+                  checkboxSelection
+                  />
+    </div>
+  )
 }

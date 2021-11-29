@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
             //     easing: theme.transitions.easing.sharp,
             //     duration: theme.transitions.duration.leavingScreen
             // }),
-            
+
             marginLeft: -drawerWidth
         },
         contentShift: {
@@ -153,7 +153,17 @@ export const Dashboard = withRouter(( props:DashProps ) => {
                         {/* {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />} */}
                     </IconButton>
                 </div>
-
+                <Divider />
+                <List>
+                    {itemsList.map((item, index) =>{
+                        const { text, onClick } = item;
+                        return(
+                            <ListItem button key={text} onClick={onClick}>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        );
+                    })}
+                </List>
             </MUIDrawer>
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open
@@ -161,7 +171,6 @@ export const Dashboard = withRouter(( props:DashProps ) => {
             >
                 <div className={classes.drawerHeader}/>
                 <DataTable />
-                <h1>Dashboard will need come data later</h1>
             </main>
         </div>
     )
